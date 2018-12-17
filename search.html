@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>已经发现所有的质数：<div id="result"></div>
+    </p>
+</body>
+
+</html>
+<script>
+    var n = 1;
+
+    // nsh:
+    // while (n < 99) {
+    //     n += 1
+    //     for (var i = 2; i <= Math.sqrt(n); i++) {
+    //         debugger
+    //         if (n % i == 0) {
+    //             continue nsh
+    //         }
+    //     }
+
+    //     document.getElementById('result').innerHTML += (n + ',')
+    // }
+
+    var n = 1
+    nsh:
+    while( n < 3){
+        n +=  1
+        for(let i = 1; i < n ; i++){
+            // (i == n - 1) && console.log('i', i)
+            if(i == n - 1) {
+                continue nsh
+            }
+        }
+        console.log('n', n)
+    }
+</script>
