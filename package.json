@@ -1,0 +1,31 @@
+{
+  "name": "font-end-learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "asyncAwait.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel decorator.js -o  decorator-compiled.js && node decorator-compiled.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myfCode/font-end-learn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myfCode/font-end-learn/issues"
+  },
+  "homepage": "https://github.com/myfCode/font-end-learn#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-1": "^6.24.1"
+  }
+}

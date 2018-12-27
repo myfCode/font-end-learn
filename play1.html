@@ -2,93 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=3,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        #box{
-            width: 200px;
-            height: 200px;
-            background-color: #cccccc;
-            text-outline: 2px 0 red;
-        }
-    </style>
+    <script>
+        let doc = window.document
+        let docEle = doc.documentElement
+
+        let metaInfo = document.querySelector('meta[name="viewport"]')
+
+        let content = metaInfo.getAttribute('content')
+
+        console.log('content', content)
+        console.log('width', docEle.getBoundingClientRect())
+
+        content = content.replace(/(initial-scale=)\d(\.\d)?(\,)/, '$10.5$3')
+
+        metaInfo.setAttribute('content', content)
+        console.log('=========')
+
+        console.log('content', content)
+        console.log('width', docEle.getBoundingClientRect())
+
+    </script>
 </head>
 <body>
-    <div draggable id="box">
-        this jis jjl a jelly就就；就；基金；就；哈哈老客户
-    </div>
+    <button id='btn'>button</button>
+
+
+    <input type="radio" class="sexRadio" value="hhh" name='sex'>:male
+    <input type="radio" class="sexRadio" name="sex">:female
     <script>
-        // 'use strict';
-
-        // window.onerror = function(e, a, b, c, d, f, g){
-        //     console.log(e)
-        //     console.log(a)
-        //     console.log(b)
-        //     console.log(c)
-        //     console.log(d)
-        //     console.log(f)
-        //     console.log(g)
-        // }
-
-        // throw new Error('this is errror msg')
-
-        // setTimeout(function(){
-        //     console.log(this)
-        // },100)
-
-        //  setTimeout(()=>console.log(this), 100)
-
-        function demo(){
-            console.log(this)
-        }
-
-        demo()
 
 
-    let add = function (a, b) {
-        let sum = 0,
-            overflow = 0;
-
-        sum = Number(a) + Number(b)
-
-        if (sum > 10) {
-            overflow = String(sum).slice(0, 1)
-        }
-
-        return { sum: String(sum), overflow: String(overflow) }
-    }
+        Event.prototype.testName = 'nsh'
+        window.onload = function(){
 
 
-    let infinityAdd = function (a, b) {
-        a = String(a)
-        b = String(b)
+            let radios = document.getElementsByClassName('sexRadio')
 
-        let aArr = a.split('')
-        let bArr = b.split('')
+            console.log(radios[0].checked, radios[1].checked)
 
-        aArr.unshift('')
-        bArr.unshift('')
-        let len = Math.max(aArr.length, bArr.length)
-
-        let temp, sumArr = [];
-        for (let i = len - 1; i > 0; i--) {
-            temp = add(aArr[i], bArr[i])
-            sumArr.unshift(temp.sum)
-
-            let overflow = Number(temp.overflow)
-            if (overflow > 0) {
-                aArr[i - 1] = Number(aArr[i - 1]) + overflow
+            radios[0].onclick = function(e){
+            console.log(radios[0].checked, radios[1].checked)
+                console.log('radios', e.target.value)
+                console.log('typof',  e.srcElement.matches('input'))
             }
 
+
+
+
+
+
+            var oBtn = document.getElementById('btn')
+
+            oBtn.onclick = function(e){
+                console.log(e)
+                alert(e.testName)
+            }   
+
+
+
+            function show(){
+                console.log(this)
+            }
+
+            var bar = {
+                show: show
+            }
+
+           function f() {
+                console.log('outside')
+            }
+
+//             (function () {
+//                 console.log(Object.prototype.toString.call(f))
+//                 f()
+
+//                 // if (true) {
+//                 //     function f() {
+//                 //         console.log('in side ')
+//                 //     }
+//                 // }
+// {
+//                     function f() {
+//                         console.log('in side ')
+//                     }
+// }
+               
+
+//             })()
         }
 
-        return sumArr.join('')
-    }
+
+        let obj1 = {
+            lover: 'nsh1'
+        }
+
+        let obj2 = {
+            lover: 'nsh2'
+        }
+
+        function showLover(){
+            console.log(this.lover)
+        }
+
+        let lover = showLover.bind(obj1).bind(obj2)
+
+
 
 
         
-console.log(infinityAdd(11111111111111, 22222222222222))
+
 
     </script>
 </body>
