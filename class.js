@@ -26,6 +26,9 @@ class Parent {
     }
 }
 
+var p1 = new Parent()
+console.log(Object.keys(p1))
+
 class Children extends Parent {
     constructor(hobby){
         super('child interest')
@@ -57,6 +60,9 @@ Parent.prototype = {
         console.log('foo')
     }
 }
+
+var p1 = new Parent()
+console.log(Object.keys(p1))
 
 function Children(hobby){
     this.hobby = hobby

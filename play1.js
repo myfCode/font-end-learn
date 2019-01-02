@@ -29,3 +29,34 @@ console.log(num) //2
 let add = ()=>console.log(a)
 
 
+
+let jieliu = function(fn, time){
+    let timer = null
+    return function(){
+        if(timer !== null) return
+        timer = setTimeout(() => {
+            fn.apply(null, [...arguments])
+            timer = null
+        },time)
+    }
+}
+
+
+
+
+let fangdou = function (fn, time) {
+    let timer = null
+    return function () {
+        if (timer !== null) clearTimeout(timer)
+        timer = setTimeout(() => {
+            fn.apply(null, [...arguments])
+            timer = null
+        }, time)
+    }
+}
+
+
+
+
+
+
