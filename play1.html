@@ -27,93 +27,18 @@
     </script>
 </head>
 <body>
-    <button id='btn'>button</button>
-
-
-    <input type="radio" class="sexRadio" value="hhh" name='sex'>:male
-    <input type="radio" class="sexRadio" name="sex">:female
+   <button id="btn">button</button>
     <script>
 
+        var href = window.location.href
+        var oImg = document.createElement('img')
 
-        Event.prototype.testName = 'nsh'
-        window.onload = function(){
+        var src = href.split('?')[1].split('=')[1]
 
+        oImg.src = decodeURI(src)
+        document.getElementById('btn').appendChild(oImg)
 
-            let radios = document.getElementsByClassName('sexRadio')
-
-            console.log(radios[0].checked, radios[1].checked)
-
-            radios[0].onclick = function(e){
-            console.log(radios[0].checked, radios[1].checked)
-                console.log('radios', e.target.value)
-                console.log('typof',  e.srcElement.matches('input'))
-            }
-
-
-
-
-
-
-            var oBtn = document.getElementById('btn')
-
-            oBtn.onclick = function(e){
-                console.log(e)
-                alert(e.testName)
-            }   
-
-
-
-            function show(){
-                console.log(this)
-            }
-
-            var bar = {
-                show: show
-            }
-
-           function f() {
-                console.log('outside')
-            }
-
-//             (function () {
-//                 console.log(Object.prototype.toString.call(f))
-//                 f()
-
-//                 // if (true) {
-//                 //     function f() {
-//                 //         console.log('in side ')
-//                 //     }
-//                 // }
-// {
-//                     function f() {
-//                         console.log('in side ')
-//                     }
-// }
-               
-
-//             })()
-        }
-
-
-        let obj1 = {
-            lover: 'nsh1'
-        }
-
-        let obj2 = {
-            lover: 'nsh2'
-        }
-
-        function showLover(){
-            console.log(this.lover)
-        }
-
-        let lover = showLover.bind(obj1).bind(obj2)
-
-
-
-
-        
-
+        //  
 
     </script>
 </body>

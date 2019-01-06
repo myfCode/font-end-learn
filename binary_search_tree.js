@@ -159,3 +159,58 @@ class BinarySearchTree {
     }
 
 }
+
+
+
+class Node {
+    constructor(data){
+        this.data = data
+        this.left = null
+        this.right = null
+    }
+
+    show(){
+        return this.data
+    }
+}
+
+class BinaryTree{
+    constructor(){
+        this.root = null
+    }
+
+    insert(data){
+        var newNode = new Node(data)
+        if(!this.root){
+            return this.root = newNode
+        }
+
+        let currentNode = this.root
+        let parentNode = null
+        while(1){
+            if (currentNode.data > newNode.data && currentNode.left != null){
+                currentNode = currentNode.left
+            }else{
+                currentNode.right = newNode
+            }
+        }
+
+    }
+
+    find(){
+
+    }
+
+    remove(){
+
+    }
+
+    clear(){
+
+    }
+
+    update(){
+
+    }
+}
+
