@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My first three.js app</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%
+        }
+
+        #box1{
+            width: 300px;
+            height: 100px;
+            background-color: red;
+        }
+        #box2{
+            width: 300px;
+            height: 100px;
+            background-color: green;
+            visibility: hidden;
+        }
+        #box3{
+            width: 300px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+    <script src="https://cdn.bootcss.com/three.js/r83/three.js"></script>
+    <script>
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        var cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        var animate = function () {
+            requestAnimationFrame(animate);
+
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
+    </script>
+    <script>
+        let render = ()=>{
+            requestAnimationFrame(function () {
+                console.log('======')
+            })
+        }
+       
+
+        var oDiv = document.createElement('div')
+        oDiv.innerHTML = 'xxxx'
+
+        setTimeout(()=>{
+            document.getElementById('box').appendChild(oDiv)
+            render()
+        }, 3000)
+
+        var m = 1, j = k = 0;
+            function add(n) {
+                return n = n + 1;     
+            }
+            y = add(m);
+            function add(n) {
+                return n = n + 3;
+            }
+            z = add(m); 
+    </script>  
+
+    <script>
+       let randomNum = function (len) {
+            function _createNum() {
+                return (Math.random() * 100 + '').split('.')[0]
+            }
+            let arr = []
+            for (let i = 0; i < len; i++) arr.push(+_createNum())
+            return arr
+        }
+
+         var arr = randomNum(10)
+
+         var obj = {}
+
+         for(let i = 0; i< arr.length;i++){
+             obj[arr[i]] = Math.floor(Math.random() * 11)
+         }
+
+         console.log(obj, arr)
+
+         arr.sort(function(a,b){
+            return obj[b] -  obj[a]
+         })
+
+         console.log('sort', arr)
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function CArray(numElements) {
+            this.dataStore = [];
+            this.pos = 0;
+            this.numElements = numElements;
+            this.insert = insert;
+            this.toString = toString;
+            this.clear = clear;
+            this.setData = setData;
+            this.swap = swap;
+            this.insetSort = insetSort;
+
+
+            this.insertionSort = insertionSort
+
+
+
+
+
+
+            for (var i = 0; i < numElements; ++i) { this.dataStore[i] = i; } this.shellsort = shellsort
+        } function setData() {
+            for (var
+                i = 0; i < this.numElements; ++i) { this.dataStore[i] = Math.floor(Math.random() * (this.numElements + 1)); }
+        }
+        function clear() { for (var i = 0; i < this.dataStore.length; ++i) { this.dataStore[i] = 0; } } function
+            insert(element) { this.dataStore[this.pos++] = element; } function toString() {
+                var restr = ""; for (var i = 0; i <
+                    this.dataStore.length; ++i) {
+                    retstr += this.dataStore[i] + " "; if (i > 0 & i % 10 == 0) {
+                        retstr += "\n";
+                    }
+                }
+                return retstr;
+            }
+        function swap(arr, index1, index2) {
+            var temp = arr[index1];
+            arr[index1] = arr[index2];
+            arr[index2] = temp;
+        }
+
+        function shellsort() {
+            console.log('dataStore', this.dataStore)
+            for (var g = 0; g < this.gaps.length; ++g) {
+                for (var i = this.gaps[g]; i < this.dataStore.length; ++i) {
+                    var temp = this.dataStore[i];
+                    for (var j = i; j >= this.gaps[g] && this.dataStore[j - this.gaps[g]] > temp; j -= this.gaps[g]) {
+                        this.dataStore[j] = this.dataStore[j - this.gaps[g]];
+                    }
+                    this.dataStore[j] = temp;
+                    console.log(this.gaps[g], this.dataStore)
+                }
+                console.log('final', this.gaps[g], this.dataStore)
+            }
+        }
+
+        function insertionSort() {
+                var temp, inner;
+                for (var outer = 1; outer <= this.dataStore.length - 1; ++outer) {
+                    temp = this.dataStore[outer];
+                    inner = outer;
+                    while (inner > 0 && (this.dataStore[inner - 1] >= temp)) {
+                        this.dataStore[inner] = this.dataStore[inner - 1];
+                        --inner;
+                    }
+                    this.dataStore[inner] = temp;
+                }
+            }
+
+
+        let insetSort = function (arr) {
+                let len = arr.length
+
+                let temp, j;
+                for (let i = 1; i < len; i++) {
+                    temp = arr[i]
+                    j = i
+                    while (j > 0 && arr[j - 1] >= temp) {
+                        arr[j] = arr[j - 1]
+                        j--
+                    }
+
+                    arr[j] = temp
+                }
+
+                return arr
+            }
+
+        var nums = new CArray(10)
+        nums.setData()
+
+        nums.gaps = [ 5, 3];
+
+        // nums.shellsort()
+    </script>
+
+    <script>
+        function mergeArray(arr, first, mid, last, temp) {
+                let i = first;
+                let m = mid;
+                let j = mid + 1;
+                let n = last;
+                let k = 0;
+                while (i <= m && j <= n) {
+                    if (arr[i] < arr[j]) {
+                        temp[k++] = arr[i++];
+                    } else {
+                        temp[k++] = arr[j++];
+                    }
+                }
+                while (i <= m) {
+                    temp[k++] = arr[i++];
+                }
+                while (j <= n) {
+                    temp[k++] = arr[j++];
+                }
+                for (let l = 0; l < k; l++) {
+                    arr[first + l] = temp[l];
+                }
+                return arr;
+            }
+            // 递归实现归并排序
+            function mergeSort(arr, first, last, temp) {
+            //   debugger
+                if (first < last) {
+                    let mid = Math.floor((first + last) / 2);
+                    mergeSort(arr, first, mid, temp);    // 左子数组有序
+                    mergeSort(arr, mid + 1, last, temp);   // 右子数组有序
+                    arr = mergeArray(arr, first, mid, last, temp);
+                }
+                return arr;
+            }
+
+            // example
+            let arr = [10, 3, 1, 5, 11, 2, 0, 6, 3];
+            let temp = new Array();
+            let SortedArr = mergeSort(arr, 0, arr.length - 1, temp)
+    </script>
+</body>
+
+</html>
