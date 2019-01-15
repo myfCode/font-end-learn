@@ -49,6 +49,10 @@ function insertSort(){
 
 
 
+var proto = {
+    lover: 'nsh'
+}
 
+var obj = Object.create(proto)
 
 

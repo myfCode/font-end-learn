@@ -197,8 +197,22 @@ class BinaryTree{
 
     }
 
-    find(){
+    find(data){
+        var root = this.root
+        var tempNode = root
+        var findNode = new Node(data)
 
+        while(1){
+            if(data == tempNode.data){
+                break
+            }else if(data > tempNode){
+                tempNode = tempNode.right
+            }else{
+                tempNode = tempNode.left
+            }
+        }
+
+        return tempNode
     }
 
     remove(){

@@ -6,9 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        #box{
+            width: 0;
+            height: 0;
+            /* border-width: 100px;
+            border-style: solid; */
+            border-top: 100px solid red;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 100px solid black;
+        }
+    </style>
 </head>
 
 <body>
+    <div id="box"></div>
+
     <script>
         function lcs(word1, word2) {
             var max = 0;
