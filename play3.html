@@ -6,154 +6,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        #box{
-            width: 0;
-            height: 0;
-            /* border-width: 100px;
-            border-style: solid; */
-            border-top: 100px solid red;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-bottom: 100px solid black;
-        }
-    </style>
 </head>
 
 <body>
-    <div id="box"></div>
+    <div id="myDiv" style="background-color: lightblue;width: 0;height: 20px;line-height: 20px;">0%</div>
+    <button id="btn">run</button>
+
+    <div id="info">info</div>
+    <script>
+        window.onload = function () {
+            console.log('111')
+            setTimeout(() => console.log('444'))
+            requestAnimationFrame(function () {
+                console.log('222')
+            })
+            requestIdleCallback(function () {
+                console.log(666)
+            })
+            setTimeout(() => console.log('555'))
+
+            console.log('333')
+
+            var timer;
+            btn.onclick = function () {
+                myDiv.style.width = '0';
+                cancelAnimationFrame(timer);
+                timer = requestAnimationFrame(function fn() {
+                    if (parseInt(myDiv.style.width) < 500) {
+                        myDiv.style.width = parseInt(myDiv.style.width) + 5 + 'px';
+                        myDiv.innerHTML = parseInt(myDiv.style.width) / 5 + '%';
+                        timer = requestAnimationFrame(fn);
+                    } else {
+                        cancelAnimationFrame(timer);
+                    }
+                });
+            }
+
+            var requestId,
+                info = document.getElementById('info');
+
+            function cb(deadline) {
+                console.log(deadline);
+                var i,
+                    html = "deadline={<br>";
+
+                for (i in deadline) {
+                    html += '    ' + i + ":" + deadline[i] + ",<br>";
+                }
+                html += "};";
+
+                info.innerHTML = html;
+            }
+
+            requestId = requestIdleCallback(cb);
+        }
+    </script>
 
     <script>
-        function lcs(word1, word2) {
-            var max = 0;
-            var index = 0;
-            var lcsarr = new Array(word1.length);
-            for (var i = 0; i <= word1.length; ++i) {
-                lcsarr[i] = new Array(word2.length );
-                for (var j = 0; j <= word2.length; ++j) {
-                    lcsarr[i][j] = 0;
-                }
-            }
-            // debugger
-            console.log('lcsarr', lcsarr)
-            // return
-            for (var i = 0; i <= word1.length; ++i) {
-                for (var j = 0; j <= word2.length; ++j) {
-                    if (i == 0 || j == 0) {
-                        lcsarr[i][j] = 0;
-                    } else {
-                        if (word1[i - 1] == word2[j - 1]) {
-                            lcsarr[i][j] = lcsarr[i - 1][j - 1] + 1;
-                        } else {
-                            lcsarr[i][j] = 0;
-                        }
-                    }
-                    if (max < lcsarr[i][j]) {
-                        max = lcsarr[i][j];
-                        index = i;
-                    }
-                }
-            }
-            console.log(lcsarr, max, index)
-            var str = "";
-            if (max == 0) {
-                return "";
-            } else {
-                for (var i = index - max; i <= max; ++i) {
-                    str += word2[i];
-                }
-                return str;
-            }
+        function a() {
+            this.x = 'a'
+            b()
+        }
+        function b() {
+            this.x = 'b'
+            c()
+        }
+        function c() {
+            this.x = 'c'
+            d()
+        }
+
+        function d() {
+            this.x = 'd'
+            e()
+        }
+        function e() {
+            this.x = 'e'
+            console.log(this.a, 'eee')
+        }
+
+        try {
+            console()
+        } catch (error) {
+            console.log('error', error)
+        }
+        window.onerror = function(err){
+            console.log('err', err)
         }
 
 
-        var str1 = 'xbcvc';
-        var str2 = 'xcbcc'
-
-        
-console.log(lcs(str1, str2))
-
-    function longestCommonStr(word1, word2) {
-        let len1 = word1.length
-        let len2 = word2.length
-
-        var arr = new Array(len1 + 1)
-        for(let n = 0, _len = arr.length; n < _len; n++){
-            arr[n] = new Array(len2 + 1).fill(0)
-        }
-
-        console.log('arr', arr)
-// return
-        let max = 0, index
-        for (let i = 0; i <= len1; i++) {
-            for (var j = 0; j <= len2; j++) {
-                if(i == 0 || j == 0){
-                    arr[i][j] = 0
-                    
-                }else if (word1[i - 1] === word2[j - 1]) {
-                    arr[i][j] =  arr[i - 1][j - 1] + 1
-                }else{
-                    arr[i][j] = 0
-                }
-
-                if (max < arr[i][j]) {
-                    max = arr[i][j]
-                    index = i
-                }
-            }
-        }
-console.log(arr, max, index)
-        if (max == 0) return ''
-
-        let str = ''
-        for (let m = index - max; m <= max; m++) {
-            str += word2[m]
-        }
-
-        return str
-
+    for (var i = 1; i <= 5; i++) {
+        (function(){
+            setTimeout(function timer() {
+                console.log(i);
+            }, i * 1000)
+        })();
     }
 
-    console.log(longestCommonStr(str1, str2))
+    for (var i = 1; i <= 5; i++) {
+            let j = i; // 是的，闭包的块作用域! setTimeout( function timer() {
+            setTimeout(function timer() {
+            console.log(j);
+        }, j * 1000);
+    }
+    </script>
+    <script>
+        function node() {
+                var str = 'aaa'
 
-    //by司徒正美
-        function LCS(str1, str2) {
-                var rows = str1.split("")
-                rows.unshift("")
-                var cols = str2.split("")
-                cols.unshift("")
-                var m = rows.length
-                var n = cols.length
-                var dp = []
-
-                let max = 0, index;
-                for (var i = 0; i < m; i++) {
-                    dp[i] = []
-                    for (var j = 0; j < n; j++) {
-                        if (i === 0 || j === 0) {
-                            dp[i][j] = 0
-                            continue
-                        }
-
-                        if (rows[i] === cols[j]) {
-                            dp[i][j] = dp[i - 1][j - 1] + 1 //对角＋1
-                        } else {
-                            dp[i][j] = 0 //对左边，上边取最大
-                        }
-
-                        if( max < dp[i][j]){
-                            max = dp[i][j]
-                            index = i
-                        }
-                    }
-                    // console.log(dp[i].join(""))//调试
+                function change() {
+                    str = 'xxx'
                 }
-                console.log(dp, max, index)
-                return dp
+
+                return { change: change }
             }
 
-        console.log(LCS(str1, str2))
+        var node1 = node()
+        var node2 = node()    
+
+
+
+        function fun(thing){
+            this.a= thing
+        }
+
+        var obj = {}
+
+        var foo = fun.bind(obj)
+
+        
+    
     </script>
+
+
 </body>
 
 </html>
